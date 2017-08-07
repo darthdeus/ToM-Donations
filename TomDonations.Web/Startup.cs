@@ -32,10 +32,11 @@ namespace TomDonations.Web {
 
             app.Run(async (context) => {
                 var db = context.RequestServices.GetService<DatabaseService>();
-                string content = string.Join("\n", db.AllMembers().Select(m => m.Name + " " + m.Points));
+                string content = "Current player points:\n\n";
+
+                content += string.Join("\n", db.AllMembers().Select(m => m.Name + " " + m.Points));
 
                 var config = context.RequestServices.GetService<IConfigurationRoot>();
-                content += $"\n\nfoo: {config["foo"]}"; 
 
                 await context.Response.WriteAsync(content);
             });
