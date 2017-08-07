@@ -35,12 +35,6 @@ namespace TomDonations.Web {
             }
         }
 
-        [Command("addbonuspoints")]
-        public async Task AddBonusPoints([Summary("Amount of points to award")] int points,
-            [Remainder, Summary("Player name")] string player) {
-            await AddPointsToPlayer(player, points);
-        }
-
         [Command("querypoints")]
         public async Task QueryPoints(string player) {
             int? points = _database.QueryPoints(player);
@@ -59,8 +53,19 @@ namespace TomDonations.Web {
             await ReplyAsync(content);
         }
 
+        [Command("addbonuspoints")]
+        public async Task AddBonusPoints([Summary("Amount of points to award")] int points,
+            [Remainder, Summary("Player name")] string player) {
+            await AddPointsToPlayer(player, points);
+        }
+
         [Command("removepoints")]
-        public async Task RemovePoints(string player) {
+        public async Task RemovePoints(int points, string player) {
+            await AddPointsToPlayer(player, points);
+        }
+
+        [Command("removeallpoints")]
+        public async Task RemoveAllPoints(string player) {
             int? points = _database.QueryPoints(player);
 
             if (points.HasValue) {
