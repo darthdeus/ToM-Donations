@@ -52,7 +52,27 @@ namespace TomDonations.Web {
             }
         }
 
+        [Command("queryall")]
+        public async Task QueryAll() {
+            string content = "All points:\n\n" +
+                             string.Join("\n", _database.AllMembers().Select(m => m.Name + " " + m.Points));
+            await ReplyAsync(content);
+        }
+
+        [Command("removepoints")]
+        public async Task RemovePoints(string player) {
+            int? points = _database.QueryPoints(player);
+
+            if (points.HasValue) {
+                await AddPointsToPlayer(player, -points.Value);
+            } else {
+                await PlayerDoesNotExist(player);
+            }
+        }
+
         private async Task AddPointsToPlayer(string player, int points) {
+            player = player.ToLower();
+
             if (_database.Award(player, points)) {
                 int? currentPoints = _database.QueryPoints(player);
 
