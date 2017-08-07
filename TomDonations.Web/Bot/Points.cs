@@ -61,7 +61,7 @@ namespace TomDonations.Web {
 
         [Command("removepoints")]
         public async Task RemovePoints(int points, string player) {
-            await AddPointsToPlayer(player, points);
+            await AddPointsToPlayer(player, -points);
         }
 
         [Command("removeallpoints")]
