@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using LiteDB;
 
@@ -6,7 +8,11 @@ namespace TomDonations.Web {
         private readonly object _lock = new object();
         private readonly LiteDatabase _db;
 
-        public DatabaseService() {
+        private static DatabaseService _instance;
+
+        public static DatabaseService Instance => _instance ?? (_instance = new DatabaseService());
+
+        private DatabaseService() {
             _db = new LiteDatabase(@"data.db");
         }
 
@@ -30,6 +36,10 @@ namespace TomDonations.Web {
             lock (_lock) {
                 return FindByName(player)?.Points;
             }
+        }
+
+        public IEnumerable<GuildMember> AllMembers() {
+            return GuildMembers().FindAll();
         }
 
         private LiteCollection<GuildMember> GuildMembers() {

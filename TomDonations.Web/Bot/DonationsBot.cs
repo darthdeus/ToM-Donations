@@ -8,15 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace TomDonations.Web {
     public class DonationsBot {
+        private readonly IServiceProvider _service;
         private DiscordSocketClient _client;
         private CommandService _commands;
-        private IServiceProvider _service;
 
-        private DatabaseService _db;
-
-        public DonationsBot() {
-            _db = new DatabaseService();
-            _service = InitializeServices();
+        public DonationsBot(IServiceProvider service) {
+            _service = service;
         }
 
         public async Task MainAsync() {
@@ -33,13 +30,13 @@ namespace TomDonations.Web {
             await Task.Delay(-1);
         }
 
-        private IServiceProvider InitializeServices() {
-            var collection = new ServiceCollection();
+        //private IServiceProvider InitializeServices() {
+        //    var collection = new ServiceCollection();
 
-            collection.AddSingleton<DatabaseService>(_db);
+        //    collection.AddSingleton(DatabaseService.Instance);
 
-            return collection.BuildServiceProvider();
-        }
+        //    return collection.BuildServiceProvider();
+        //}
 
         private async Task InstallCommands() {
             _client.MessageReceived += HandleCommand;

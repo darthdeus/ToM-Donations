@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 
 namespace TomDonations.Web {
-    public class ResourceTable
-    {
-        public static Dictionary<string, float> MultiplierMapping = new Dictionary<string, float>();
-        public static Dictionary<string, int> TierMapping = new Dictionary<string, int>();
+    public class ResourceTable {
+        public static Dictionary<string, float> MultiplierMapping;
+        public static Dictionary<string, int> TierMapping;
 
-        static ResourceTable()
-        {
+        static ResourceTable() {
             MultiplierMapping = new Dictionary<string, float> {
                 {"hide", 1},
                 {"leather", 2},
@@ -84,26 +82,18 @@ namespace TomDonations.Web {
             };
         }
 
-        public static float? PointMultiplier(string type)
-        {
-            if (MultiplierMapping.ContainsKey(type))
-            {
+        public static float? PointMultiplier(string type) {
+            if (MultiplierMapping.ContainsKey(type)) {
                 return MultiplierMapping[type];
-            }
-            else
-            {
+            } else {
                 return null;
             }
         }
 
-        public static int? Tier(string name)
-        {
-            if (TierMapping.ContainsKey(name))
-            {
+        public static int? Tier(string name) {
+            if (TierMapping.ContainsKey(name)) {
                 return TierMapping[name];
-            }
-            else
-            {
+            } else {
                 return null;
             }
         }
