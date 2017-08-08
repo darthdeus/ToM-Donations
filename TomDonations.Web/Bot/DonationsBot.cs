@@ -73,9 +73,11 @@ namespace TomDonations.Web {
         }
     }
 
-    public class RequireOwnerAttribute : PreconditionAttribute {
+    public class RequireTomOfficerAttribute : PreconditionAttribute {
         public async override Task<PreconditionResult> CheckPermissions(ICommandContext context, CommandInfo command, IServiceProvider services) {
             Console.WriteLine(context.User.Username);
+
+            
 
             return PreconditionResult.FromSuccess();
         }
