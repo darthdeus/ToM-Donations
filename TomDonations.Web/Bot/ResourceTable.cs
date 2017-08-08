@@ -20,10 +20,21 @@ namespace TomDonations.Web {
                 {"bar", 2},
 
                 {"stone", 1},
-                {"block", 2}
+                {"block", 2},
+
+                {"food", 1}
             };
 
             TierMapping = new Dictionary<string, int> {
+                {"carrot", 1},
+                {"bean", 2},
+                {"wheat", 3},
+                {"turnip", 4},
+                {"cabbage", 5},
+                {"potato", 6},
+                {"corn", 7},
+                {"pumpkin", 8},
+
                 {"cotton", 2},
                 {"flax", 3},
                 {"hemp", 4},

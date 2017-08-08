@@ -7,7 +7,7 @@ namespace TomDonations.Web {
         public async override Task<PreconditionResult> CheckPermissions(ICommandContext context, CommandInfo command, IServiceProvider services) {
             Console.WriteLine($"Username: {context.User.Username}, Discriminator: {context.User.Discriminator}, DValue: {context.User.DiscriminatorValue}");
 
-            if (context.User.Username == "Jay.Cee") {
+            if (context.User.Username == "Jay.Cee" || context.User.Username == "darthdeus") {
                 return PreconditionResult.FromSuccess();
             } else {
                 return PreconditionResult.FromError("You are not allowed to modify donation points.");
