@@ -25,7 +25,7 @@ namespace TomDonations.Web {
 
             await InstallCommands();
             await _client.LoginAsync(TokenType.Bot, token);
-            await _client.StartAsync();
+            await _client.StartAsync();            
 
             await Task.Delay(-1);
         }
@@ -76,8 +76,6 @@ namespace TomDonations.Web {
     public class RequireTomOfficerAttribute : PreconditionAttribute {
         public async override Task<PreconditionResult> CheckPermissions(ICommandContext context, CommandInfo command, IServiceProvider services) {
             Console.WriteLine(context.User.Username);
-
-            
 
             return PreconditionResult.FromSuccess();
         }
