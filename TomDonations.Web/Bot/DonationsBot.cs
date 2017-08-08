@@ -72,4 +72,12 @@ namespace TomDonations.Web {
             return Task.CompletedTask;
         }
     }
+
+    public class RequireOwnerAttribute : PreconditionAttribute {
+        public async override Task<PreconditionResult> CheckPermissions(ICommandContext context, CommandInfo command, IServiceProvider services) {
+            Console.WriteLine(context.User.Username);
+
+            return PreconditionResult.FromSuccess();
+        }
+    }
 }
