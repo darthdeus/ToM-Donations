@@ -13,6 +13,7 @@ namespace TomDonations.Web {
 
         // !addpoints copper ore 100 darthdeus
         [Command("addpoints"), Summary("Awards points to a player based on donated resources")]
+        [RequireTomOfficer]
         public async Task AddPoints([Summary("Tier of the item")] string tier,
             [Summary("Resource type")] string type,
             [Summary("Donated amount")] int amount,
@@ -54,6 +55,7 @@ namespace TomDonations.Web {
         }
 
         [Command("addbonuspoints")]
+        [RequireTomOfficer]
         public async Task AddBonusPoints([Summary("Amount of points to award")] int points,
             [Remainder, Summary("Player name")] string player) {
             await AddPointsToPlayer(player, points);
@@ -66,6 +68,7 @@ namespace TomDonations.Web {
         }
 
         [Command("removeallpoints")]
+        [RequireTomOfficer]
         public async Task RemoveAllPoints(string player) {
             int? points = _database.QueryPoints(player);
 
